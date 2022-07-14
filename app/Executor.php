@@ -19,8 +19,7 @@ class Executor
 
         $message = new Message();
 
-        //$keyboard = new Keyboard();
-        //$keyboard->sendMessage($update->getFullName().'Ку ',array(array('Проверить URL')));
+
         switch ($update->getText()){
             case  'Проверить URL' :
                 $message = $message->sendMessage('Отправите ссылку');
@@ -29,9 +28,10 @@ class Executor
                 break;
             case ($update->getText() != '') :
                 if(filter_var($update->getText(), FILTER_VALIDATE_URL)){
-                    $message = $message->sendMessage((new Monitoring())->siteMessage($update->getText()));
+                    $message = $message->sendMessage((new Monitoring($update->getText()))->siteMessage());
                 }else{
-                    $message = $message->sendMessage('Я вас не понял');
+                    $keyboard = new Keyboard();
+                    $keyboard->sendMessage('Я вас не понял',array(array('Проверить URL')));
                 }
 
         }

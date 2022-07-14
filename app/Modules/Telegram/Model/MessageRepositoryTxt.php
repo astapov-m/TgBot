@@ -12,7 +12,9 @@ class MessageRepositoryTxt implements IMessageSource
     public function save($data){
         $file = file_get_contents('save/message.txt');
 
-        file_put_contents('save/message.txt',$file.json_encode($data)."\n");
+        $newMessage = $data;
+
+        file_put_contents('save/message.txt',$file.$newMessage."\n");
     }
 
 }
