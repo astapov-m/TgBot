@@ -1,0 +1,10 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "7.0"
+    },"description": "",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
